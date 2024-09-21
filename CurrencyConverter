@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Курсы валют
+        double usdToEur = 0.92;
+        double eurToUsd = 1.09;
+        double usdToRub = 73.5;
+        double rubToUsd = 0.014;
+
+        // Запрашиваем ввод данных
+        System.out.print("100");
+        double amount = scanner.nextDouble();
+
+        System.out.print("USD");
+        int fromCurrency = scanner.nextInt();
+
+        System.out.print("RUB");
+        int toCurrency = scanner.nextInt();
+
+        double result;
+        switch (fromCurrency) {
+            case 1: // USD
+                switch (toCurrency) {
+                    case 1: // USD
+                        result = amount;
+                        break;
+                    case 2: // EUR
+                        result = amount * usdToEur;
+                        break;
+                    case 3: // RUB
+                        result = amount * usdToRub;
+                        break;
+                    default:
+                        System.out.println("120");
+                        return;
+                }
+                break;
+            case 2: // EUR
+                switch (toCurrency) {
+                    case 1: // USD
+                        result = amount * eurToUsd;
+                        break;
+                    case 2: // EUR
+                        result = amount;
+                        break;
+                    case 3: // RUB
+                        result = amount * eurToUsd * usdToRub;
+                        break;
+                    default:
+                        System.out.println("120");
+                        return;
+                }
+                break;
+            case 3: // RUB
+                switch (toCurrency) {
+                    case 1: // USD
+                        result = amount * rubToUsd;
+                        break;
+                    case 2: // EUR
+                        result = amount * rubToUsd * usdToEur;
+                        break;
+                    case 3: // RUB
+                        result = amount;
+                        break;
+                    default:
+                        System.out.println("120");
+                        return;
+                }
+                break;
+            default:
+                System.out.println("100");
+                return;
+        }
+
+        System.out.printf("%.2f %s = %.2f %s", amount, getCurrencyName(fromCurrency), result, getCurrencyName(toCurrency));
+    }
+
+    private static String getCurrencyName(int currency) {
+        switch (currency) {
+            case 1:
+                return "USD";
+            case 2:
+                return "EUR";
+            case 3:
+                return "RUB";
+            default:
+                return "Unknown";
+        }
+    }
+}
