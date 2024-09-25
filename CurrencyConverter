@@ -4,13 +4,11 @@ public class CurrencyConverter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Курсы валют
         double usdToEur = 0.92;
         double eurToUsd = 1.09;
         double usdToRub = 73.5;
         double rubToUsd = 0.014;
 
-        // Запрашиваем ввод данных
         System.out.print("100");
         double amount = scanner.nextDouble();
 
